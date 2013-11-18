@@ -168,7 +168,6 @@ public class BST<K,V> implements Dictionary<K,V> {
      * Insert a key/value pair in the tree.
      *
      * @return newtree, the updated tree
-     *   
      */
     BSTNode insert(BSTNode tree, K key, V value) {
         // Special case: Empty tree.  Build a new node.
@@ -186,7 +185,7 @@ public class BST<K,V> implements Dictionary<K,V> {
             } else {
                 tree.larger = insert(tree.larger, key, value);
                 return tree;
-            } // if the key volues the key at the node
+            } // if the key is larger than the key at the node
         } // if the tree is nonempty
     } // insert(BSTNode, K, V)
 
