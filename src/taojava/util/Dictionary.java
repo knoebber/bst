@@ -9,72 +9,76 @@ import java.util.Iterator;
  * @author Samuel A. Rebelsky
  * @author CSC 207 2013F
  */
-public interface Dictionary<K,V> extends Iterable<V> {
+public interface Dictionary<K, V>
+    extends Iterable<V>
+{
 
-    // +-----------+-------------------------------------------------------
-    // | Observers |
-    // +-----------+
+  // +-----------+-------------------------------------------------------
+  // | Observers |
+  // +-----------+
 
-    /**
-     * Get the value associated with a particular key.
-     *
-     * @throws Exception if the key is not in the dictionary.
-     */
-    public V get(K key) throws Exception;
+  /**
+   * Get the value associated with a particular key.
+   *
+   * @throws Exception if the key is not in the dictionary.
+   */
+  public V get(K key)
+    throws Exception;
 
-    /**
-     * Determine if the dictionary contains a value with a particular
-     * key.  (Useful in checking the precondition for get.)
-     */
-    public boolean containsKey(K key);
+  /**
+   * Determine if the dictionary contains a value with a particular
+   * key.  (Useful in checking the precondition for get.)
+   */
+  public boolean containsKey(K key);
 
-    // +----------+--------------------------------------------------------
-    // | Mutators |
-    // +----------+
+  // +----------+--------------------------------------------------------
+  // | Mutators |
+  // +----------+
 
-    /**
-     * Set the value associated with a particular key.  If there was
-     * previously a value with that key, replaces it.
-     */
-    public void set(K key, V value);
+  /**
+   * Set the value associated with a particular key.  If there was
+   * previously a value with that key, replaces it.
+   */
+  public void set(K key, V value);
 
-    /**
-     * Remove the value associated with a particular key.  Future calls
-     * to get with the same key should throw exceptions (at least until
-     * the next call to set with the same key).
-     *
-     * @return the value associated with the key
-     * @throws Exception if the key is not in the dictionary
-     */ 
-    public V remove(K key) throws Exception;
+  /**
+   * Remove the value associated with a particular key.  Future calls
+   * to get with the same key should throw exceptions (at least until
+   * the next call to set with the same key).
+   *
+   * @return the value associated with the key
+   * @throws Exception if the key is not in the dictionary
+   */
+  public V remove(K key)
+    throws Exception;
 
-    /**
-     * Remove all of the items from the dictionary.
-     */
-    public void clear();
+  /**
+   * Remove all of the items from the dictionary.
+   */
+  public void clear();
 
-    // +-----------+-------------------------------------------------------
-    // | Iterators |
-    // +-----------+
+  // +-----------+-------------------------------------------------------
+  // | Iterators |
+  // +-----------+
 
-    /**
-     * Get an iterable for the values in the dictionary.  The values are
-     * iterated in no particular order.  If a value appears more than once
-     * in the dictionary (i.e., if it is associated with more than one key),
-     * it appears more than once in the iteration.
-     */
-    public Iterator<V> iterator();
+  /**
+   * Get an iterable for the values in the dictionary.  The values are
+   * iterated in no particular order.  If a value appears more than once
+   * in the dictionary (i.e., if it is associated with more than one key),
+   * it appears more than once in the iteration.
+   */
+  public Iterator<V> iterator();
 
-    /**
-     * Get an iterable for the keys in the dictionary.  The keys are
-     * iterated in no particular order.  (We want an iterable so that
-     * we can use it with Java's for-each form.)
-     */
-    public Iterable<K> keys();
+  /**
+   * Get an iterable for the keys in the dictionary.  The keys are
+   * iterated in no particular order.  (We want an iterable so that
+   * we can use it with Java's for-each form.)
+   */
+  public Iterable<K> keys();
 
-    /**
-     * Get an iterator for the keys in the dictionary.
-     */
-    public Iterator<K> keysIterator();
+  /**
+   * Get an iterator for the keys in the dictionary.
+   */
+  public Iterator<K> keysIterator();
 
 } // Dictionary<K,V>
