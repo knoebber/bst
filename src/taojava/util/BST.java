@@ -196,6 +196,66 @@ public class BST<K, V>
   } // dump(PrintWriter, BSTNode, String)
 
   /**
+   * Print all of the elements in some order or other.
+   * 
+   * Note: We are trying to avoid recursion.
+   */
+  public void print(PrintWriter pen)
+  {
+    // A collection of the remaining things to print.  The collection
+    // contains either nodes (which means we want to print the root
+    // and the subtrees) or strings (which means that we want to print
+    // that string.
+    Stack<Object> remaining = new Stack<Object>();
+
+    // Initially, we want to print the whole tree, so put it on the stack
+    remaining.push(this.root);
+
+    // Invariants: 
+    //   remaining only contains Strings or BSTNodes
+    //   All key/value pairs in the tree are either
+    //     (a) already printed
+    //     (b) in remaining
+    //     (c) in or below a node in remaining
+    int level=0;
+    int levelToPrint=0;
+    while (!remaining.isEmpty())
+      {
+        Object next = remaining.pop();
+        if (next instanceof String)
+          {
+            pen.print(next);
+            pen.print(" ");
+          } // if it's a string
+        else
+          {
+            // next must be a BSTNode
+            @SuppressWarnings("unchecked")
+            BSTNode node = (BSTNode) next;
+            
+            if(level==levelToPrint)
+              remaining.push(node.value);
+            if (node.larger != null)
+              {
+                level++;
+                remaining.push(node.larger);
+              } // if (node.larger != null)
+            
+            if (node.smaller != null)
+              {
+                level++;
+                remaining.push(node.smaller);
+              } // if (node.smaller != null)
+            if(node.smaller==null ||node.larger==null)
+              {
+                levelToPrint=level;
+              }
+          } // if it's a node
+      } // while
+    pen.println();
+  } // print(PrintWriter)
+
+  /**
    * Insert a key/value pair in the tree.
    *
    * @return newtree, the updated tree

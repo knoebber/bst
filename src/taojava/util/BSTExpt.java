@@ -35,22 +35,19 @@ public class BSTExpt
     throws Exception
   {
     pen = new PrintWriter(System.out, true);
-    dict = new BST<String, String>(new Comparator<String>()
+
+    String[] values =
+        new String[] { "monkey", "gibbon", "snake", "dingo", "koala", "python",
+                      "viper", "baboon", "frog", "hippo", "lemur", "orangutan",
+                      "rabbit", "tiger", "wombat", "aardvark", "chinchilla",
+                      "emu", "gnu" };
+    BST<Character, String> dict =
+        new BST<Character, String>((left, right) -> left.compareTo(right));
+    for (String value : values)
       {
-        public int compare(String left, String right)
-        {
-          return left.compareTo(right);
-        } // compare(String, String)
-      });
-    dict.dump(pen);
-    pen.println();
-    expt("e", "elephant");
-    expt("c", "chinchilla");
-    expt("b", "baboon");
-    expt("d", "dingo");
-    expt("a", "aardvark");
-    expt("g", "gibbon");
-    expt("h", "hippo");
+        dict.set(value.charAt(0), value);
+      } // for
+    dict.print(pen);
     // expt("a", "ant");
     // expt("z", "chinchilla");
   } // main(String[])
